@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bootstrap Toolbar</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="UTF-8">
+		
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css" />
+		
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="bootstrap-toolbar.js"></script>
+
+		<style type="text/css">
+			.toolbar {
+				background-color: lightgray;
+				background: linear-gradient(to bottom, #e8e8e8 0%,#bababa 100%);
+			}
+			.toolbar > .btn-group {
+				margin: 5px;
+			}
+			.statusbar {
+				color: white;
+				background-color: #007ACC;
+			}
+		</style>
+
+        <script type="text/javascript">
+            window.onload = function() {
+                $(".toolbar").toolbar({
+					show: true,
+					attr: {class: "toolbar"},
+					buttons: {
+						button1: {text: "Button"},
+						button2: {text: "Primary", class: "btn btn-primary" }
+					},
+
+					list: ["bold", "italic", "space",
+						"quote", "code", "image", "link", "space",
+						"ol", "ul", "header", "table", "space",
+						"undo", "redo"],
+					buttons: {
+						bold: { title: "Bold", icon: "fa fa-bold", onclick: this.bold },
+						italic: { title: "Italic", icon: "fa fa-italic", onclick: this.italic },
+
+						quote: { title: "Quote text", icon: "fa fa-quote-left", onclick: this.quote },
+						code: { title: "Block of code", icon: "fa fa-code", onclick: this.code },
+						image: { title: "Add image", icon: "fa fa-image", onclick: this.image },
+						link: { title: "Hyperlink", icon: "fa fa-link", onclick: this.link },
+						
+						ol: { title: "Ordered list", icon: "fa fa-list-ol", onclick: this.ol },
+						ul: { title: "Unordered list", icon: "fa fa-list-ul", onclick: this.ul },
+						header: { title: "Header", icon: "fa fa-header", onclick: this.header },
+						table: { title: "Table", icon: "fa fa-table", onclick: this.table },
+						
+						undo: { title: "Undo", icon: "fa fa-undo", onclick: this.undo },
+						redo: { title: "Redo", icon: "fa fa-repeat", onclick: this.redo }
+					}
+
+				});
+            }
+        </script>
+	</head>
+    <body>
+		EDITOR 1:
+        <div class="toolbar" id="t1"></div>
+		
+		EDITOR 2:
+        <div class="toolbar" id="t2"></div>
+
+		<br>
+
+		<div class="btn-group" role="group">
+			<button type="button" class="btn btn-default btn-quote" title="Quote text"><span class="fa fa-quote-left"></span></button>
+			<button type="button" class="btn btn-default btn-code" title="Block of code"><span class="fa fa-code"></span></button>
+			<button type="button" class="btn btn-default btn-image" title="Add image"><span class="fa fa-image"></span></button>
+			<button type="button" class="btn btn-default btn-hyperlink" title="Hyperlink"><span class="fa fa-link"></span></button>
+			<div class="btn-group" role="group" title="Link for pages">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="fa fa-file-text"></span> <span class="caret">
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#" class="btn-newpage">New Page</a></li>
+					<li class="divider"></li>
+					<li><a href="#">Page 1</a></li>
+					<li><a href="#">Page 2</a></li>
+					<li><a href="#">Page 3</a></li>
+					<li><a href="#">Page 4</a></li>
+					<li><a href="#">Page 5</a></li>
+					<li><a href="#">Page 6</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="input-group" style="width: 350px">
+			<input type="text" class="form-control"  placeholder="Recipient's username" aria-describedby="basic-addon2">
+			<span class="input-group-addon" id="basic-addon2">@example.com</span>
+		</div>
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+		<div class="input-group">
+			<input type="text" class="form-control"  placeholder="Recipient's username" aria-describedby="basic-addon2">
+			<span class="input-group-addon" id="basic-addon2">@example.com</span>
+		</div>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+    </body>
+</html>
