@@ -1,0 +1,25 @@
+{
+  "name": "bootstrap-toolbar",
+  "main": "index.html",
+  "homepage": "https://github.com/rigon/bootstrap-toolbar",
+  "authors": [
+    "rigon <ricardompgoncalves@gmail.com>"
+  ],
+  "description": "Customizable toolbars for Bootstrap",
+  "keywords": [
+    "notes"
+  ],
+  "license": "GPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "fontawesome#^4.7.0",
+    "jquery": "^3.1.1"
+  }
+}
