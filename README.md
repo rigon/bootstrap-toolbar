@@ -1,1 +1,3 @@
-# bootstrap-toolbar
+# Bootstrap Toolbar
+
+Customizable toolbars for Bootstrap
