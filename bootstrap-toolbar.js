@@ -41,16 +41,16 @@ function bootstraptoolbar(htmlElement, customOptions) {
 
         // Iterate over newOptions
         for(var name in newOptions) {
-            var attribute = newOptions[name];
+            var newValue = newOptions[name];
 
             switch(name) {
                 case "buttons":
                     // Merge buttons
-                    this.addButtons(attribute);
+                    this.addButtons(newValue);
                     break;
                 default:
                     // Copy values to in options
-                    this.options[attribute] = newOptions[attribute];
+                    this.options[name] = newValue;
             }
         }
 
@@ -64,6 +64,7 @@ function bootstraptoolbar(htmlElement, customOptions) {
         for(var i in list) {
             var name = list[i];
             var button = buttons[name];
+            console.log(name);
 
             if(name === "space") {
                 element.append(group);
@@ -113,6 +114,7 @@ function bootstraptoolbar(htmlElement, customOptions) {
 
 
     this.redraw = function() {
+        console.log(this.options.list);
         // List of buttons
         var hasList = (this.options.list.length > 0);
         var list = (hasList ? this.options.list : this.options.list);
@@ -139,6 +141,7 @@ function bootstraptoolbar(htmlElement, customOptions) {
 
     var autoredraw = this.options.autoredraw;
     this.options.autoredraw = false;        // Disable temporarily
+    
     this.addOptions(customOptions);
     this.create();
 
