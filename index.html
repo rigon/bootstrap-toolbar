@@ -41,7 +41,9 @@
 					list: ["bold", "italic", "space",
 						"quote", "code", "image", "link", "space",
 						"ol", "ul", "header", "table", "space",
-						"undo", "redo"],
+						"undo", "redo", "space",
+						"newpage" ],
+
 					buttons: {
 						bold: { title: "Bold", icon: "fa fa-bold", onclick: this.bold },
 						italic: { title: "Italic", icon: "fa fa-italic", onclick: this.italic },
@@ -57,7 +59,21 @@
 						table: { title: "Table", icon: "fa fa-table", onclick: this.table },
 						
 						undo: { title: "Undo", icon: "fa fa-undo", onclick: this.undo },
-						redo: { title: "Redo", icon: "fa fa-repeat", onclick: this.redo }
+						redo: { title: "Redo", icon: "fa fa-repeat", onclick: this.redo },
+
+						newpage: { 
+							type: "dropdown",
+							icon: "fa fa-file-text",
+							list: [
+								{ text: '<a href="#" class="btn-newpage">New Page</a>' },
+								{ class: "divider" },
+								{ text: '<a href="#">Page 1</a>' },
+								{ text: '<a href="#">Page 2</a>' },
+								{ text: '<a href="#">Page 3</a>' },
+								{ text: '<a href="#">Page 4</a>' },
+								{ text: '<a href="#">Page 5</a>' },
+								{ text: '<a href="#">Page 6</a>' }]
+						},
 					}
 				});
 			}

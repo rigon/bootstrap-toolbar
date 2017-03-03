@@ -73,7 +73,6 @@ function bootstraptoolbar(htmlElement, customOptions) {
 
 
 	function createButtons(list, buttons, element, self_id) {
-		var obj;
 		var group = $("<div></div>", { class: "btn-group", role: "group" });
 
 		for (var i in list) {
@@ -86,20 +85,24 @@ function bootstraptoolbar(htmlElement, customOptions) {
 				continue;
 			}
 
+			var type;
 			switch (typeof button) {
-				case "string":
+				case "string": type = "html"; break;
+				case "object": type = ("type" in button ? button.type : "button"); break;
+			}
+
+			switch (type) {
+				case "html":
 					// Create an element with the HTML
-					group.append($(button));
+					group.append(button);
 					break;
-				case "object":
+				case "button":
 					// Create button
-					obj = $('<button type="button" class="btn btn-default"></button>');
+					var obj = $('<button type="button" class="btn btn-default"></button>');
 
 					// If has icon
 					if ("icon" in button) {
-						var icon = $("<span></span>", {
-							class: button.icon
-						});
+						var icon = $("<span></span>", { class: button.icon });
 						obj.append(icon);
 						delete button.icon;
 					}
@@ -118,6 +121,57 @@ function bootstraptoolbar(htmlElement, customOptions) {
 
 					// Add button to the group
 					group.append(obj);
+					break;
+				case "dropdown":
+					// Create button
+					var dropdown_group = $('<div class="btn-group" role="group"></div>');
+					var dropdown_button = $('<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>');
+					var dropdown_list = $('<ul class="dropdown-menu"></ul>');
+
+					// If has icon
+					if ("icon" in button) {
+						var icon = $("<span></span>", { class: button.icon });
+						dropdown_button.append(icon);
+						delete button.icon;
+					}
+					// If has text
+					if ("text" in button) {
+						dropdown_button.append(" " + button.text);
+						delete button.text;
+					}
+					// Add caret
+					dropdown_button.append(' <span class="caret"></span>');
+
+					// Add list of options
+					for(var i in button.list) {
+						var dropdown_option = button.list[i];
+						var dropdown_option_li = $('<li></li>');
+
+						// If has icon
+						if ("icon" in dropdown_option) {
+							var icon = $("<span></span>", { class: dropdown_option.icon });
+							dropdown_option_li.append(dropdown_option.icon);
+							delete dropdown_option.icon;
+						}
+
+						// If has text
+						if ("text" in dropdown_option) {
+							dropdown_option_li.append(" " + dropdown_option.text);
+							delete dropdown_option.text;
+						}
+						// Set attributes
+						dropdown_option_li.attr(dropdown_option);
+
+						// Add to dropdown list
+						dropdown_list.append(dropdown_option_li);
+					}
+					
+					// Set attributes
+					dropdown_group.attr(button);
+
+					dropdown_group.append(dropdown_button);
+					dropdown_group.append(dropdown_list);
+					group.append(dropdown_group);
 					break;
 				default:
 					throw "Wrong button type";
