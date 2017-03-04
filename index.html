@@ -22,9 +22,30 @@
 			.toolbar > .navbar > .btn-group {
 				margin: 5px;
 			}
+
 			.statusbar {
 				color: white;
 				background-color: #007ACC;
+				position: absolute;
+				bottom: 0px;
+				width: 100%;
+			}
+			.statusbar > .navbar { min-height: 0; margin: 0; }
+			.statusbar > .navbar > .btn-group {
+				margin: 0px 7px 0px 7px;
+			}
+			.statusbar .btn {
+				font-size: 85%;
+				color: white;
+				background: none;
+				border: none;
+				border-radius: 0px;
+				padding: 3px 6px;
+			}
+			.statusbar .btn:hover { background-color: #008DDF; }
+			.statusbar .btn:active, .statusbar .btn-group.open .btn {
+				color: white;
+				background-color: #0070C1;
 			}
 		</style>
 
@@ -83,6 +104,44 @@
 						},
 					}
 				});
+
+
+				$(".statusbar").toolbar({
+					list: ["settings", "language", "theme", "space", "position" ],
+					buttons: {
+						settings: { icon: "fa fa-cogs" },
+
+						language: { 
+							widget: "dropup",
+							text: "Language",
+							list: [
+								{ text: '<a href="#">Plain text</a>' },
+								{ class: "divider" },
+								{ text: '<a href="#">HTML</a>' },
+								{ text: '<a href="#">JavaScript</a>' },
+								{ text: '<a href="#">Java</a>' },
+								{ text: '<a href="#">C/C++</a>' },
+								{ text: '<a href="#">OCaml</a>' },
+								{ text: '<a href="#">Haskell</a>' }]
+						},
+
+						theme: { 
+							widget: "dropup",
+							text: "Theme",
+							list: [
+								{ text: '<a href="#">Abyss</a>' },
+								{ text: '<a href="#">Dark+</a>' },
+								{ text: '<a href="#">Kimbie</a>' },
+								{ text: '<a href="#">High Contrast</a>' },
+								{ text: '<a href="#">Light</a>' },
+								{ text: '<a href="#">Monokai</a>' }]
+						},
+
+						position: {
+							text: "Ln 139, Col 54"
+						},
+					}
+				});
 			}
 		</script>
 	</head>
@@ -93,5 +152,7 @@
 		TOOLBAR 2:
 		<div class="toolbar" id="t2"></div>
 
+		<span style="position: absolute; bottom: 30px;">STATUSBAR 2:</span>
+		<div class="statusbar"></div>
 	</body>
 </html>

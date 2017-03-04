@@ -123,10 +123,14 @@ function bootstraptoolbar(htmlElement, customOptions) {
 					group.append(obj);
 					break;
 				case "dropdown":
+				case "dropup":
 					// Create button
 					var dropdown_group = $('<div class="btn-group" role="group"></div>');
 					var dropdown_button = $('<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>');
 					var dropdown_list = $('<ul class="dropdown-menu"></ul>');
+
+					if(widget === "dropup")
+						dropdown_group.addClass("dropup");
 
 					// If has icon
 					if ("icon" in button) {
