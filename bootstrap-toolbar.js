@@ -85,13 +85,13 @@ function bootstraptoolbar(htmlElement, customOptions) {
 				continue;
 			}
 
-			var type;
+			var widget;
 			switch (typeof button) {
-				case "string": type = "html"; break;
-				case "object": type = ("type" in button ? button.type : "button"); break;
+				case "string": widget = "html"; break;
+				case "object": widget = ("widget" in button ? button.widget : "button"); break;
 			}
 
-			switch (type) {
+			switch (widget) {
 				case "html":
 					// Create an element with the HTML
 					group.append(button);
@@ -173,8 +173,36 @@ function bootstraptoolbar(htmlElement, customOptions) {
 					dropdown_group.append(dropdown_list);
 					group.append(dropdown_group);
 					break;
+				case "input":
+					var input_group = $('<div class="input-group"></div>');
+					var input_element = $('<input class="form-control">');
+					
+					// Add prefix addon
+					if("prefix" in button) {
+						var input_prefix = $('<span class="input-group-addon"></span>');
+						input_prefix.html(button.prefix);
+						input_group.append(input_prefix);
+						delete button.prefix;
+					}
+					
+					// Add input
+					input_group.append(input_element);
+
+					// Add sufix addon
+					if("sufix" in button) {
+						var input_sufix = $('<span class="input-group-addon"></span>');
+						input_sufix.html(button.sufix);
+						input_group.append(input_sufix);
+						delete button.sufix;
+					}
+
+					// Set attributes
+					input_element.attr(button);
+
+					group.append(input_group);
+					break;
 				default:
-					throw "Wrong button type";
+					throw "Wrong widget button type";
 			}
 		}
 
